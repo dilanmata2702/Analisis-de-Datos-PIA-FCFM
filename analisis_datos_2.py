@@ -107,9 +107,11 @@ def menu():
             info_message(1, "No se introdujo un valor válido.")
             info_message (2, "Regresando al menú...")
             time.sleep(5)
-            return
+            return menu()
         except Exception as e:
-            info_message(1, f'Ocurrió un error desconocido: {e}. Vuelve a abrir el programa')
+            info_message(1, f'Ocurrió un error desconocido: {e}. Si el error persiste, reinicia el programa.')
+            info_message(2, 'Regresando al menú...')
+            return menu()
         match opcion:
             case 1:
                 return opcion_1()
@@ -148,9 +150,11 @@ def opcion_1():
             info_message(1, "No se introdujo un valor válido.")
             info_message (2, "Regresando al menú...")
             time.sleep(5)
-            return
+            return opcion_1()
         except Exception as e:
-            info_message(1, f'Ocurrió un error desconocido: {e}. Vuelve a abrir el programa')
+            info_message(1, f'Ocurrió un error desconocido: {e}. Si el error persiste, reinicia el programa.')
+            info_message(2, 'Regresando al menú...')
+            return opcion_1()
         match opcion:
             case 1:
                 rank_units_sold()
@@ -192,9 +196,11 @@ def opcion_2():
             info_message(1, "No se introdujo un valor válido.")
             info_message (2, "Regresando al menú...")
             time.sleep(5)
-            return
+            return opcion_2()
         except Exception as e:
-            info_message(1, f'Ocurrió un error desconocido: {e}. Vuelve a abrir el programa')
+            info_message(1, f'Ocurrió un error desconocido: {e}. Si el error persiste, reinicia el programa.')
+            info_message(2, 'Regresando al menú...')
+            return opcion_2()
         match opcion:
             case 1:
                 rank_item_net_revenue()
@@ -249,7 +255,6 @@ def rank_units_sold():
     plt.axvline(x=45000, color='orange', linestyle='dashed', label='Más de $45000') #Creamos una linea de referencia
     plt.legend()
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -281,7 +286,6 @@ def rank_units_cost():
     plt.axvline(x=700, color='orange', linestyle='dashed', label='Más de $700') #Creamos una linea de referencia
     plt.legend()
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -313,7 +317,6 @@ def rank_units_price():
     plt.axvline(x=4000, color='orange', linestyle='dashed', label='Más de $4000') #Creamos una linea de referencia
     plt.legend()
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -342,7 +345,6 @@ def prom_units_sold():
     plt.xlabel('Unidad')
     plt.ylabel('Promedio')
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -371,7 +373,6 @@ def max_unit_sales():
     plt.xlabel('Unidad')
     plt.ylabel('Cantidad Vendida')
     plt.tight_layout()
-    plt.savefig('barras.png', dpi=150)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -401,7 +402,6 @@ def min_unit_sales():
     plt.xlabel('Unidad')
     plt.ylabel('Cantidad Vendida')
     plt.tight_layout()
-    plt.savefig('barras.png', dpi=150)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -432,7 +432,6 @@ def rank_item_net_revenue():
     plt.xlabel('Item')
     plt.ylabel('Ganancia Neta')
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -463,7 +462,6 @@ def rank_item_net_cost():
     plt.xlabel('Item')
     plt.ylabel('Costo Neto')
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -494,7 +492,6 @@ def rank_item_total_gain():
     plt.xlabel('Item')
     plt.ylabel('Ganancia Total')
     plt.tight_layout() #Evita que se corten etiquetas
-    plt.savefig('barras.png', dpi=120)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -524,7 +521,6 @@ def max_total_profit_item():
     plt.xlabel('Item')
     plt.ylabel('Ganancia Total')
     plt.tight_layout()
-    plt.savefig('barras.png', dpi=150)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -555,7 +551,6 @@ def min_total_profit_item():
     plt.xlabel('Item')
     plt.ylabel('Ganancia Total')
     plt.tight_layout()
-    plt.savefig('barras.png', dpi=150)
     if save_grafica() is True:
         plt.savefig('grafica.png', dpi=250)
     plt.show()
@@ -611,7 +606,6 @@ def chart_avg_items_country():
 """--- OPCIÓN 4: REPORTE --- """
 def generar_reporte_item():
     """Creamos un reporte a partir de un item selccionado."""
-    limpiar_consola()
     info_message(2, 'Seleccionaste crear un reporte en base a un item seleccionado.')
     info_message(2, 'A continuación, selecciona un Item: \n')
     time.sleep(5)
@@ -666,7 +660,7 @@ def generar_reporte_item():
     if save_file() is False:
         return
     try:
-        with open(f'reporte {item_elegido}', 'w', encoding='utf-8',) as reporte:
+        with open(f'reporte {item_elegido}.txt', 'w', encoding='utf-8',) as reporte:
             reporte.write(reporte_texto)
             info_message(2, 'El reporte se creó con exito!')
             info_message(2, f'Nombre del archivo: "reporte {item_elegido}"')
